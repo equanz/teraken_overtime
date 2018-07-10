@@ -2,6 +2,7 @@
 from urllib import request, error
 import datetime
 import os
+import sys
 
 def crawl_image():
     URI = "http://www.tsuyama-ct.ac.jp/image/web-image/webimage0.jpg"
@@ -43,6 +44,8 @@ def main():
 
         # save image
         save_data(crawl_data['image'], dir_path=DIR_PATH, file_path=file_path)
+    else: # error exist
+        sys.stderr.write(crawl_data['err'])
 
 # run as main program
 if __name__ == "__main__":
