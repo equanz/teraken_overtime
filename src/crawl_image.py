@@ -44,8 +44,10 @@ def main():
 
         # save image
         save_data(crawl_data['image'], dir_path=DIR_PATH, file_path=file_path)
+        print('saved!')
     else: # error exist
         sys.stderr.write(crawl_data['err'])
+        print('not saved!')
 
 # run as main program
 if __name__ == "__main__":
