@@ -9,9 +9,9 @@ LABEL_NAME = ['not_north', 'north']
 
 def load_model():
     global model
-    with open(os.getenv('DUMP_DIR') + "/north_predict.json", 'r') as f:
+    with open(os.getenv('DUMP_DIR') + "/north_model_cnn.json", 'r') as f:
         model = models.model_from_json(f.read())
-        model.model.load_weights(os.getenv('DUMP_DIR') + "/north_predict.hdf5")
+        model.model.load_weights(os.getenv('DUMP_DIR') + "/north_params_cnn.hdf5")
         model.compile(loss="mse", optimizer='sgd', metrics=["acc"]) # compile model
 
 
@@ -39,7 +39,8 @@ def main():
         x = np.expand_dims(x, axis=0)
 
         feature = predict(x)
-        print(image_path + ": " + str(feature[0, 0]))
+        if feature[0, 0] != 1:
+            print(image_path + ": " + str(feature[0, 0]))
 
 if __name__ == "__main__":
     main()
